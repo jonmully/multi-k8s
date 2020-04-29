@@ -3,18 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t jonmully/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t mullerj/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true jonmully/react-test npm test -- --coverage
+  - docker run -e CI=true mullerj/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t jonmully/multi-client ./client
-  - docker build -t jonmully/multi-nginx ./nginx
-  - docker build -t jonmully/multi-server ./server
-  - docker build -t jonmully/multi-worker ./worker
+  - docker build -t mullerj/multi-client ./client
+  - docker build -t mullerj/multi-nginx ./nginx
+  - docker build -t mullerj/multi-server ./server
+  - docker build -t mullerj/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push jonmully/multi-client
-  - docker push jonmully/multi-nginx
-  - docker push jonmully/multi-server
-  - docker push jonmully/multi-worker
+  - docker push mullerj/multi-client
+  - docker push mullerj/multi-nginx
+  - docker push mullerj/multi-server
+  - docker push mullerj/multi-worker
