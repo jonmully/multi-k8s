@@ -1,0 +1,2 @@
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm install my-nginx stable/nginx-ingress --set rbac.create=true 
